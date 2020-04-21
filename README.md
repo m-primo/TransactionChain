@@ -1,6 +1,8 @@
 # TransactionChain
 Simple TransactionChain (Transaction Chain), based on Blockchain technology.
+
 Still on development.
+
 Your contributions are welcome.
 
 
