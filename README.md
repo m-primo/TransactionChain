@@ -1,6 +1,10 @@
 # Simple TransactionChain
 TransactionChain (Transaction Chain), based on Blockchain technology.
 
+Still on development.
+
+Your contributions are welcome.
+
 
 ## System requirements
 * PHP 7.0+
