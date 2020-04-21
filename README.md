@@ -6,11 +6,11 @@ TransactionChain (Transaction Chain), based on Blockchain technology.
 
 ## Installation
 From command line:
-```bash
+```cmd
 php main.php
 ```
 Or run:
-```bash
+```bat
 run.bat
 ```
 
