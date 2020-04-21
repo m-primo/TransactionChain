@@ -1,5 +1,5 @@
 # TransactionChain
-Simple TransactionChain (Transaction Chain), based on Blockchain technology.
+Simple TransactionChain (Simple Private Transaction Chain), based on Blockchain technology.
 
 Still on development.
 
