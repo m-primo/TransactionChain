@@ -5,6 +5,12 @@ Still on development.
 
 Your contributions are welcome.
 
+---------------------------
+
+* You can track your money, expense, income, or anything.
+* Use it whatever you want.
+
+---------------------------
 
 ## System requirements
 * PHP 7.0+
