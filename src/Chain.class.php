@@ -16,7 +16,7 @@ class Chain {
     }
     public static function show(?bool $current = false):void {
         global $transactions;
-        if($current) print_r($transactions);
+        if($current) print json_encode($transactions, JSON_PRETTY_PRINT);
         else json_decode(file_get_contents(TRANSACTIONS_DB_FILE));
     }
     public static function isValid():bool {
