@@ -21,16 +21,15 @@ From command line:
 ```cmd
 php main.php
 ```
-Or run:
+Or open:
 ```bat
 run.bat
 ```
 
 
 ## Screenshots
-<img src="https://lh3.googleusercontent.com/-Vu3-3asTGJs/Xp8yaQsbqZI/AAAAAAAAFBU/aiYi7b2v3FItJ0LLXPiPKHjaQ93TwGarACNcBGAsYHQ/s0/1tc.png">
-<img src="https://lh3.googleusercontent.com/-8MRjz4FfHP4/Xp8ya5S4GpI/AAAAAAAAFBY/5OokJIhfNvwSFIYcpsPpzG-t9-7UvctsACNcBGAsYHQ/s0/2tc.png">
-<img src="https://lh3.googleusercontent.com/-8FcKQ92bmoc/Xp8ybdlJsjI/AAAAAAAAFBc/e7gYG9X7UOgrYxTH9WdTj8XIeVTyEv6CACNcBGAsYHQ/s0/3tc.png">
+<img src="https://lh3.googleusercontent.com/-8FHv2RN_KJ0/XqAcINWEdYI/AAAAAAAAFBw/8iI6TD-xda0ISYu605I3m_MnSh_uDDI_ACNcBGAsYHQ/s0/1tc_n.png">
+<img src="https://lh3.googleusercontent.com/-Wvth1GCMSII/XqAcIYQcFqI/AAAAAAAAFB0/HqbhsYTZy5o1NOyaNr-tkjl4MwMHNUsrQCNcBGAsYHQ/s0/2tc_n.png">
 
 
 ## Contributing
