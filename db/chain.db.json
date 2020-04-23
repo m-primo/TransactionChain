@@ -5,5 +5,19 @@
         "amount": 0,
         "account": "Genesis Transaction",
         "hash": "a979e2241f3a067f05e33c3cf2e8bc9eade5edd1e496d6d87bd4c8ffeb1c2671"
+    },
+    {
+        "prev": "a979e2241f3a067f05e33c3cf2e8bc9eade5edd1e496d6d87bd4c8ffeb1c2671",
+        "date": "Apr 22, 2020 10:21:06",
+        "amount": 7,
+        "account": "primo",
+        "hash": "3d4cf22bc59a37ecba0a1e91919c0a6936e865647e63e88d26e111b50613dae3"
+    },
+    {
+        "prev": "3d4cf22bc59a37ecba0a1e91919c0a6936e865647e63e88d26e111b50613dae3",
+        "date": "Apr 23, 2020 18:57:42",
+        "amount": 666,
+        "account": "webAcc",
+        "hash": "22af9a6b2f8f6a7417c35405a807763dca4d00d838c6c045194578d82ef21122"
     }
 ]
