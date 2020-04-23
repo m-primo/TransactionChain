@@ -34,6 +34,16 @@ app\web\run_host.bat
 ```
 then enter the port you want.
 
+Or from command line:
+```cmd
+php -S HOST:PORT
+```
+
+for example:
+```cmd
+php -S 127.0.0.1:7000
+```
+
 ## Screenshots
 ### Command Line App
 <img src="https://lh3.googleusercontent.com/-8FHv2RN_KJ0/XqAcINWEdYI/AAAAAAAAFBw/8iI6TD-xda0ISYu605I3m_MnSh_uDDI_ACNcBGAsYHQ/s0/1tc_n.png">
