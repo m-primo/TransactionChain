@@ -5,6 +5,8 @@ Still on development.
 
 Your contributions are welcome.
 
+Check [Transaction-Chain Project](https://github.com/users/m-primo/projects/2).
+
 ---------------------------
 
 * You can track your money, expense, income, or anything.
