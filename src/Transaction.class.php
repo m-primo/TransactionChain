@@ -14,10 +14,7 @@ class Transaction {
         $this->account = $account ? $account : null;
         $this->toHash = $this->prev.':'.$this->amount.':'.$this->date.':'.$this->account;
         $this->hash = PoW::hash($this->toHash);
-        if(!$isFake) if($this->isValid()) $this->save();
-    }
-    public function isValid():bool {
-        return PoW::verifyHash($this->toHash, $this->hash);
+        if(!$isFake) $this->save();
     }
     public function save():void {
         global $transactions;

@@ -1,4 +1,5 @@
 <?php
+if(!Chain::isValid()) die('Chain is not valid.'.eol);
 function stdin() {
     return trim(fgets(STDIN));
 }

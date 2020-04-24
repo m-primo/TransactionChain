@@ -16,6 +16,8 @@ function getChain() {
     Chain::show(true);
 }
 // ---------------------
+if(!Chain::isValid()) die(json_encode([100, 'Chain is not valid.']));
+// ---------------------
 if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && isset($_POST['account']) && isset($_POST['amount'])) {
     $account = $_POST['account'];
     $amount = round($_POST['amount'], ROUND_PREC);

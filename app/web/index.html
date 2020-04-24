@@ -95,11 +95,13 @@
                     data: $('#transaction_form').serialize(),
                     success: function(response){
                         if(response[0] == 200) updateModal('Transaction', '<span class="badge badge-success">Done</span><br>Account: '+response[1]+'<br>Amount: '+response[2]+'<br>Balance: '+response[3]);
+                        else if(response[0] == 100) updateModal('Transaction', '<span class="badge badge-danger">Error</span><br>'+response[1]);
                         $('#add_btn').html('Add');
                         $('#transaction_form')[0].reset();
                     },
                     error: function(response){
                         updateModal('Transaction', '<span class="badge badge-danger">Error</span><br>'+response);
+                        console.log(response);
                         $('#add_btn').html('Add');
                     }
                 });
@@ -114,16 +116,23 @@
                 data: {get_transactionchain: "1"},
                 success: function(response){
                     var s = "";
-                    var keys = ['prev', 'date', 'amount', 'account', 'hash'];
-                    for(var r in response) {
-                        s += '<div class="tx_outer alert alert-secondary" id="tx_outer_index_'+r+'">';
-                        for(var k in keys) s += '<div class="tx_inner">'+keys[k]+': '+response[r][keys[k]]+'</div>';
-                        s += '</div>';
+                    if(response[0] === 100) {
+                        updateModal('TransactionChain', '<span class="badge badge-danger">Error</span><br>'+response[1]);
+                        s = response[1];
+                    }
+                    else {
+                        var keys = ['prev', 'date', 'amount', 'account', 'hash'];
+                        for(var r in response) {
+                            s += '<div class="tx_outer alert alert-secondary" id="tx_outer_index_'+r+'">';
+                            for(var k in keys) s += '<div class="tx_inner">'+keys[k]+': '+response[r][keys[k]]+'</div>';
+                            s += '</div>';
+                        }
                     }
                     $('#transactionchain_section').html(s);
                 },
                 error: function(response){
                     updateModal('TransactionChain', '<span class="badge badge-danger">Error</span><br>'+response);
+                    console.log(response);
                     $('#transactionchain_section').html('<span class="badge badge-danger">Error</span>');
                 }
             });

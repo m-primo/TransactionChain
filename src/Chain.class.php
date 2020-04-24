@@ -8,11 +8,13 @@ class Chain {
         }
         return round($balance, ROUND_PREC);
     }
-    public static function save():void {
+    public static function save():bool {
         if(self::isValid()) {
             global $transactions;
             file_put_contents(TRANSACTIONS_DB_FILE, json_encode($transactions, JSON_PRETTY_PRINT));
+            return true;
         }
+        return false;
     }
     public static function show(?bool $current = false):void {
         global $transactions;
@@ -21,13 +23,8 @@ class Chain {
     }
     public static function isValid():bool {
         global $transactions;
-        $txo = [];
-        $i = 0;
         foreach($transactions as $tx) {
-            $txo[] = new Transaction($txo[count($txo)-1], $tx['amount'], $tx['account'], $tx['date'], true);
-            if(!$txo[$i]->isValid()) return false;
-            if(!PoW::verifyHash($txo[$i]->prev.':'.$txo[$i]->amount.':'.$txo[$i]->date.':'.$txo[$i]->account, $txo[$i]->hash)) return false;
-            $i++;
+            if(!PoW::verifyHash($tx['prev'].':'.$tx['amount'].':'.$tx['date'].':'.$tx['account'], $tx['hash'])) return false;
         }
         return true;
     }
