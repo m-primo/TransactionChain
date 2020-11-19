@@ -24,7 +24,7 @@ class Chain {
     public static function isValid():bool {
         global $transactions;
         foreach($transactions as $tx) {
-            if(!PoW::verifyHash($tx['prev'].':'.$tx['amount'].':'.$tx['date'].':'.$tx['account'], $tx['hash'])) return false;
+            if(!PoW::verifyHash($tx['prev'].':'.$tx['amount'].':'.$tx['date'].':'.$tx['account'].':'.$tx['notes'], $tx['hash'])) return false;
         }
         return true;
     }

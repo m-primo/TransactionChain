@@ -4,15 +4,17 @@ class Transaction {
     public $amount = null;
     public $date = null;
     public $account = null;
+    public $notes = null;
     private $toHash = null;
     public $hash = null;
-    public function __construct($prev, ?float $amount, ?string $account = null, $date = null, ?bool $isFake = false) {
+    public function __construct($prev, ?float $amount, ?string $account = null, ?string $notes = null, $date = null, ?bool $isFake = false) {
         if(is_array($prev)) $this->prev = $prev ? $prev['hash'] : null;
         if(is_object($prev)) $this->prev = $prev ? $prev->hash : null;
         $this->amount = $amount ? round($amount, ROUND_PREC) : 0;
         $this->date = $date ? $date : @date(DATE_FORMAT);
         $this->account = $account ? $account : null;
-        $this->toHash = $this->prev.':'.$this->amount.':'.$this->date.':'.$this->account;
+        $this->notes = $notes ? $notes : null;
+        $this->toHash = $this->prev.':'.$this->amount.':'.$this->date.':'.$this->account.':'.$this->notes;
         $this->hash = PoW::hash($this->toHash);
         if(!$isFake) $this->save();
     }
@@ -26,6 +28,7 @@ class Transaction {
             'date' => $this->date,
             'amount' => $this->amount,
             'account' => $this->account,
+            'notes' => $this->notes,
             'hash' => $this->hash,
         );
     }
