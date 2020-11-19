@@ -47,6 +47,7 @@ php -S 127.0.0.1:7000
 ```
 
 ## Screenshots
+screenshots of version 0.5
 ### Command Line App
 <img src="https://lh3.googleusercontent.com/-8FHv2RN_KJ0/XqAcINWEdYI/AAAAAAAAFBw/8iI6TD-xda0ISYu605I3m_MnSh_uDDI_ACNcBGAsYHQ/s0/1tc_n.png">
 <img src="https://lh3.googleusercontent.com/-Wvth1GCMSII/XqAcIYQcFqI/AAAAAAAAFB0/HqbhsYTZy5o1NOyaNr-tkjl4MwMHNUsrQCNcBGAsYHQ/s0/2tc_n.png">
