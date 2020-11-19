@@ -1,23 +1,26 @@
 [
     {
         "prev": null,
-        "date": "Apr 21, 2020 18:00:23",
+        "date": "Nov 19, 2020 21:43:49",
         "amount": 0,
         "account": "Genesis Transaction",
-        "hash": "a979e2241f3a067f05e33c3cf2e8bc9eade5edd1e496d6d87bd4c8ffeb1c2671"
+        "notes": null,
+        "hash": "61ca06c84a44376f9ed7b00591e275f44c5e107bf15fdcb58801b544de84e624947c7df045ab646da36527ec942c5a3b68e3270a49b9fc69d3366b7cb7d74783"
     },
     {
-        "prev": "a979e2241f3a067f05e33c3cf2e8bc9eade5edd1e496d6d87bd4c8ffeb1c2671",
-        "date": "Apr 22, 2020 10:21:06",
-        "amount": 7,
-        "account": "primo",
-        "hash": "3d4cf22bc59a37ecba0a1e91919c0a6936e865647e63e88d26e111b50613dae3"
+        "prev": "61ca06c84a44376f9ed7b00591e275f44c5e107bf15fdcb58801b544de84e624947c7df045ab646da36527ec942c5a3b68e3270a49b9fc69d3366b7cb7d74783",
+        "date": "Nov 19, 2020 21:44:09",
+        "amount": 1,
+        "account": "web",
+        "notes": "test",
+        "hash": "cc891f85be81304bb91e9bdfb3881d4fa9fce9d582da310dd589459576cbf0764d47f5d4da9241e3f4e2aaba0cba3d30fc0369e4ab1921459e737134a121522a"
     },
     {
-        "prev": "3d4cf22bc59a37ecba0a1e91919c0a6936e865647e63e88d26e111b50613dae3",
-        "date": "Apr 23, 2020 18:57:42",
-        "amount": 666,
-        "account": "webAcc",
-        "hash": "22af9a6b2f8f6a7417c35405a807763dca4d00d838c6c045194578d82ef21122"
+        "prev": "cc891f85be81304bb91e9bdfb3881d4fa9fce9d582da310dd589459576cbf0764d47f5d4da9241e3f4e2aaba0cba3d30fc0369e4ab1921459e737134a121522a",
+        "date": "Nov 19, 2020 21:45:08",
+        "amount": -1,
+        "account": "web",
+        "notes": "test from cli",
+        "hash": "55b767a09e1274bbadc88da82e1051f84bd31e3c9a2270d34a19aba9898651715552de3373dd6d8ab68cf4fac4ab08939f3ed5455dfd219fcf3acf2a07fbf07d"
     }
 ]
