@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>TransactionChain Web App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <style>
+    .badge {font-size: 100%;}
+    </style>
+</head>
+<body class="pt-5">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a href="javascript:transactionPage();" class="navbar-brand">TransactionChain Web App</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto" id="mainUlNav">
+                    <li class="nav-item" id="nav_tx"><a href="javascript:transactionPage();" class="nav-link">Transaction</a></li>
+                    <li class="nav-item" id="nav_txc"><a href="javascript:transactionchainPage();" class="nav-link">TransactionChain</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" id="mainTitleContainer">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="card-body">
+                    <h4 class="card-title"></h4>
+                    <p class="card-text"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="mainBodyContainer">
+        <div id="someEl0" style="display: none;"></div>
+        <form method="post" class="alert alert-dark" id="transaction_form" style="display: none;">
+            <div class="row mb-3">
+                <label for="id_account" class="col-sm-2">Account:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="account" id="id_account" />
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="id_amount" class="col-sm-2">Amount:</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" name="amount" id="id_amount" />
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="id_notes" class="col-sm-2">Notes:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="notes" id="id_notes" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <button type="button" id="add_btn" class="btn btn-lg btn-primary">Add</button>
+                </div>
+            </div>
+            <input type="hidden" name="action" value="add" />
+        </form>
+        <div id="transactionchain_section" style="display: none;">
+            <div>...</div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="statusModalCenter" tabindex="-1" role="dialog" aria-labelledby="statusModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="statusModalCenterTitle">...</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="statusModalCenterBody">...</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var loader_s = '<div class="text-center m-auto"><i class="fa fa-spinner fa-spin" style="font-size:36px"></i></div>';
+        $(function(){
+            transactionPage();
+            $('#add_btn').click(function(e){
+                e.preventDefault();
+                $('#add_btn').html(loader_s);
+                $.ajax({
+                    url: 'source.php',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: $('#transaction_form').serialize(),
+                    success: function(response){
+                        if(response[0] == 200) updateModal('Transaction', '<span class="badge badge-success">Done</span><br>Account: '+response[1]+'<br>Amount: '+response[2]+'<br>Notes: '+response[3]+'<br>Balance: '+response[4]);
+                        else updateModal('Transaction', '<span class="badge badge-danger">Error</span><br>'+response[1]);
+                        $('#add_btn').html('Add');
+                        $('#transaction_form')[0].reset();
+                    },
+                    error: function(response){
+                        updateModal('Transaction', '<span class="badge badge-danger">Error</span><br>'+response);
+                        console.log(response);
+                        $('#add_btn').html('Add');
+                    }
+                });
+            });
+        });
+        function getTransactionChain() {
+            $('#transactionchain_section').html(loader_s);
+            $.ajax({
+                url: 'source.php',
+                type: 'GET',
+                dataType: 'json',
+                data: {get_transactionchain: "1"},
+                success: function(response){
+                    var s = "";
+                    if(response[0] === 400) {
+                        updateModal('TransactionChain', '<span class="badge badge-danger">Error</span><br>'+response[1]);
+                        s = response[1];
+                    } else {
+                        var keys = ['prev', 'date', 'amount', 'account', 'hash'];
+                        for(var r in response) {
+                            s += '<div class="tx_outer alert alert-secondary" id="tx_outer_index_'+r+'">';
+                            for(var k in keys) s += '<div class="tx_inner">'+keys[k]+': '+response[r][keys[k]]+'</div>';
+                            s += '</div>';
+                        }
+                    }
+                    $('#transactionchain_section').html(s);
+                },
+                error: function(response){
+                    updateModal('TransactionChain', '<span class="badge badge-danger">Error</span><br>'+response);
+                    console.log(response);
+                    $('#transactionchain_section').html('<span class="badge badge-danger">Error</span>');
+                }
+            });
+        }
+        function updateModal(title, body) {
+            $('#statusModalCenter').modal('show');
+            $('#statusModalCenter #statusModalCenterTitle').html(title);
+            $('#statusModalCenter #statusModalCenterBody').html(body);
+        }
+        function updatePage(title, desc, selectorElementShow, selectorNavElement) {
+            $("#mainTitleContainer .card-title").html(title);
+            $("#mainTitleContainer .card-text").html(desc);
+            $('#mainBodyContainer').children().hide();
+            $(selectorElementShow).show();
+            $('#mainUlNav').children().removeClass('active');
+            $(selectorNavElement).addClass('active');
+        }
+        function transactionPage() {
+            updatePage('Record a Transaction', 'add a transaction into an account.', '#transaction_form', '#nav_tx');
+        }
+        function transactionchainPage() {
+            updatePage('TransactionChain', 'view your transactionchain.', '#transactionchain_section', '#nav_txc');
+            getTransactionChain();
+        }
+    </script>
+</body>
+</html>
